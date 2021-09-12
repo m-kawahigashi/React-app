@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
 export const App = () => {
+  const [incompleteTodos, setIncompleteTodos] = useState(["あああ", "いいい"]);
+  const [completeTodos, setCompleteTodos] = useState(["ううう", "えええ"]);
   return (
     <>
       {/* TODO入力 */}
@@ -14,16 +16,16 @@ export const App = () => {
       <div className="incomplete-todo">
         <p className="title">未完了のTODO</p>
         <ul>
-          <div className="list-row">
-            <li>あああ</li>
-            <button>完了</button>
-            <button>削除</button>
-          </div>
-          <div className="list-row">
-            <li>ううう</li>
-            <button>完了</button>
-            <button>削除</button>
-          </div>
+          {/* 配列の中身を1つずつ表示 */}
+          {incompleteTodos.map((todo) => {
+            return (
+              <div key={todo} className="list-row">
+                <li>{todo}</li>
+                <button>完了</button>
+                <button>削除</button>
+              </div>
+            );
+          })}
         </ul>
       </div>
 
@@ -31,14 +33,15 @@ export const App = () => {
       <div className="complete-todo">
         <p className="title">完了のTODO</p>
         <ul>
-          <div className="list-row">
-            <li>いいい</li>
-            <button>戻す</button>
-          </div>
-          <div className="list-row">
-            <li>えええ</li>
-            <button>戻す</button>
-          </div>
+          {/* 配列の中身を1つずつ表示 */}
+          {completeTodos.map((todo) => {
+            return (
+              <div key={todo} className="list-row">
+                <li>{todo}</li>
+                <button>戻す</button>
+              </div>
+            );
+          })}
         </ul>
       </div>
     </>
