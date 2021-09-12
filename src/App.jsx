@@ -2,14 +2,30 @@ import React, { useState } from "react";
 import "./styles.css";
 
 export const App = () => {
+  //　入力内容格納変数を定義
+  const [inputText, setInputText] = useState("");
+  const onChangeInpuText = (e) => setInputText(e.target.value);
+  const onClickAdd = () => {
+    if (inputText === "") return;
+    //alert(inputText);
+    const newTodos = [...incompleteTodos, inputText];
+    setIncompleteTodos(newTodos);
+    setInputText("");
+  };
+
+  // タスク一覧変数を定義
   const [incompleteTodos, setIncompleteTodos] = useState(["あああ", "いいい"]);
   const [completeTodos, setCompleteTodos] = useState(["ううう", "えええ"]);
   return (
     <>
       {/* TODO入力 */}
       <div className="input-todo">
-        <input placeholder="TODOを入力" />
-        <button>追加</button>
+        <input
+          placeholder="TODOを入力"
+          value={inputText}
+          onChange={onChangeInpuText}
+        />
+        <button onClick={onClickAdd}>追加</button>
       </div>
 
       {/* 未完了TODO一覧 */}
