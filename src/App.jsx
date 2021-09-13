@@ -13,6 +13,16 @@ export const App = () => {
     setInputText("");
   };
 
+  // 削除ボタンのクリックイベント
+  const onClickDelete = (index) => {
+    //現状の未完了タスク一覧を取得
+    const newTodos = [...incompleteTodos];
+    //indexのタスクを1つ削除
+    newTodos.splice(index, 1);
+    //削除後の状態に更新
+    setIncompleteTodos(newTodos);
+  };
+
   // タスク一覧変数を定義
   const [incompleteTodos, setIncompleteTodos] = useState(["あああ", "いいい"]);
   const [completeTodos, setCompleteTodos] = useState(["ううう", "えええ"]);
@@ -33,12 +43,12 @@ export const App = () => {
         <p className="title">未完了のTODO</p>
         <ul>
           {/* 配列の中身を1つずつ表示 */}
-          {incompleteTodos.map((todo) => {
+          {incompleteTodos.map((todo, index) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
                 <button>完了</button>
-                <button>削除</button>
+                <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             );
           })}
