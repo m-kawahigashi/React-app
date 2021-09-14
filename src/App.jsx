@@ -37,6 +37,19 @@ export const App = () => {
     setIncompleteTodos(newIncompleteTodos);
   };
 
+  // 戻すボタンのクリックイベント
+  const onClickBack = (index) => {
+    //現状の未完了タスク一覧を取得
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+    //完了のタスク一覧を取得&追加
+    const newCompleteTodos = [...completeTodos];
+    setIncompleteTodos(newIncompleteTodos);
+    //未完了のTODOに戻した要素を削除
+    newCompleteTodos.splice(index, 1);
+    //削除後の状態に更新
+    setCompleteTodos(newCompleteTodos);
+  };
+
   // タスク一覧変数を定義
   const [incompleteTodos, setIncompleteTodos] = useState(["あああ", "いいい"]);
   const [completeTodos, setCompleteTodos] = useState(["ううう", "えええ"]);
@@ -78,7 +91,7 @@ export const App = () => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>戻す</button>
+                <button onClick={() => onClickBack(index)}>戻す</button>
               </div>
             );
           })}
