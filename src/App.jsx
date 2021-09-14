@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./styles.css";
+import { InputTodo } from "./components/inputTodos";
+import { IncompleteTodo } from "./components/incompleteTodos";
+import { CompleteTodo } from "./components/completeTodos";
 
 export const App = () => {
   //　入力内容格納変数を定義
@@ -51,52 +54,26 @@ export const App = () => {
   };
 
   // タスク一覧変数を定義
-  const [incompleteTodos, setIncompleteTodos] = useState(["あああ", "いいい"]);
-  const [completeTodos, setCompleteTodos] = useState(["ううう", "えええ"]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
+  const [completeTodos, setCompleteTodos] = useState([]);
   return (
     <>
       {/* TODO入力 */}
-      <div className="input-todo">
-        <input
-          placeholder="TODOを入力"
-          value={inputText}
-          onChange={onChangeInpuText}
-        />
-        <button onClick={onClickAdd}>追加</button>
-      </div>
+      <InputTodo
+        inputText={inputText}
+        onChange={onChangeInpuText}
+        onClick={onClickAdd}
+      />
 
       {/* 未完了TODO一覧 */}
-      <div className="incomplete-todo">
-        <p className="title">未完了のTODO</p>
-        <ul>
-          {/* 配列の中身を1つずつ表示 */}
-          {incompleteTodos.map((todo, index) => {
-            return (
-              <div key={todo} className="list-row">
-                <li>{todo}</li>
-                <button onClick={() => onClickComplete(index)}>完了</button>
-                <button onClick={() => onClickDelete(index)}>削除</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
+      <IncompleteTodo
+        incompleteTodos={incompleteTodos}
+        onClickDelete={onClickDelete}
+        onClickComplete={onClickComplete}
+      />
 
       {/* 完了済TODO一覧 */}
-      <div className="complete-todo">
-        <p className="title">完了のTODO</p>
-        <ul>
-          {/* 配列の中身を1つずつ表示 */}
-          {completeTodos.map((todo, index) => {
-            return (
-              <div key={todo} className="list-row">
-                <li>{todo}</li>
-                <button onClick={() => onClickBack(index)}>戻す</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
+      <CompleteTodo completeTodos={completeTodos} onClickBack={onClickBack} />
     </>
   );
 };
