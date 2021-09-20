@@ -5,6 +5,14 @@ import { IncompleteTodo } from "./components/incompleteTodos";
 import { CompleteTodo } from "./components/completeTodos";
 
 export const App = () => {
+  //定数・エラーメッセージ
+  const ZYOUGEN_COUNT = 5;
+  const ZYOUGEN_ERR_MSG = (
+    <p style={{ color: "red" }}>
+      これ以上登録出来ません。登録件数は最大5件までです。
+    </p>
+  );
+
   //　入力内容格納変数を定義
   const [inputText, setInputText] = useState("");
   const onChangeInpuText = (e) => setInputText(e.target.value);
@@ -63,9 +71,11 @@ export const App = () => {
         inputText={inputText}
         onChange={onChangeInpuText}
         onClick={onClickAdd}
+        disabledFlag={incompleteTodos.length >= ZYOUGEN_COUNT}
       />
 
       {/* 未完了TODO一覧 */}
+      {incompleteTodos.length >= ZYOUGEN_COUNT && ZYOUGEN_ERR_MSG}
       <IncompleteTodo
         incompleteTodos={incompleteTodos}
         onClickDelete={onClickDelete}
