@@ -24,40 +24,6 @@ li {
   margin-right: 8px;
 }
 
-.input-todo {
-  background: #c1ffff;
-  width: 400px;
-  height: 30px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 8px;
-}
-
-.incomplete-todo {
-  background: #c6ffe2;
-  width: 400px;
-  min-height: 200px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 8px;
-}
-
-.complete-todo {
-  background: #ffe0f7;
-  width: 400px;
-  min-height: 200px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 8px;
-}
-
-.title {
-  text-align: center;
-  margin-top: 0;
-  font-weight: bold;
-  color: #666;
-}
-
 .list-row {
   display: flex;
   align-items: center;
