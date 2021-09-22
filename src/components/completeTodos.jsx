@@ -17,7 +17,7 @@ const title = {
 };
 
 export const CompleteTodo = (props) => {
-  const { completeTodos, onClickBack } = props;
+  const { completeTodos, onClickBack, disabledFlag } = props;
   return (
     //{/* 完了済TODO一覧 */}
     <div style={todo}>
@@ -28,7 +28,12 @@ export const CompleteTodo = (props) => {
           return (
             <div key={todo} className="list-row">
               <li>{todo}</li>
-              <button onClick={() => onClickBack(index)}>戻す</button>
+              <button
+                disabled={disabledFlag}
+                onClick={() => onClickBack(index)}
+              >
+                戻す
+              </button>
             </div>
           );
         })}

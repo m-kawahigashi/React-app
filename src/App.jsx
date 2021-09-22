@@ -12,6 +12,11 @@ export const App = () => {
       これ以上登録出来ません。登録件数は最大5件までです。
     </p>
   );
+  const ZYOUGEN_BACK_ERR_MSG = (
+    <p style={{ color: "red" }}>
+      これ以上戻せません。戻せるのは最大5件までです。
+    </p>
+  );
 
   //　入力内容格納変数を定義
   const [inputText, setInputText] = useState("");
@@ -83,7 +88,12 @@ export const App = () => {
       />
 
       {/* 完了済TODO一覧 */}
-      <CompleteTodo completeTodos={completeTodos} onClickBack={onClickBack} />
+      {incompleteTodos.length >= ZYOUGEN_COUNT && ZYOUGEN_BACK_ERR_MSG}
+      <CompleteTodo
+        completeTodos={completeTodos}
+        onClickBack={onClickBack}
+        disabledFlag={incompleteTodos.length >= ZYOUGEN_COUNT}
+      />
     </>
   );
 };
