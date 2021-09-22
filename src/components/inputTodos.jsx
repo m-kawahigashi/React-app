@@ -10,7 +10,7 @@ const inputTodo = {
 };
 
 export const InputTodo = (props) => {
-  const { inputText, onChange, onClick, disabledFlag } = props;
+  const { inputText, onChange, onClick, disabledFlag, inputDisabled } = props;
   return (
     // {/* TODO入力 */}
     <div style={inputTodo}>
@@ -20,7 +20,7 @@ export const InputTodo = (props) => {
         value={inputText}
         onChange={onChange}
       />
-      <button disabled={disabledFlag} onClick={onClick}>
+      <button disabled={(disabledFlag, inputDisabled)} onClick={onClick}>
         追加
       </button>
     </div>

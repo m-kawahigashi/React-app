@@ -5,8 +5,11 @@ import { IncompleteTodo } from "./components/incompleteTodos";
 import { CompleteTodo } from "./components/completeTodos";
 
 export const App = () => {
-  //定数・エラーメッセージ
+  //定数
   const ZYOUGEN_COUNT = 5;
+  const INPUT_ZYOUGEN_COUNT = 20;
+
+  //エラーメッセージ
   const ZYOUGEN_ERR_MSG = (
     <p style={{ color: "red" }}>
       これ以上登録出来ません。登録件数は最大5件までです。
@@ -15,6 +18,11 @@ export const App = () => {
   const ZYOUGEN_BACK_ERR_MSG = (
     <p style={{ color: "red" }}>
       これ以上戻せません。戻せるのは最大5件までです。
+    </p>
+  );
+  const INPUT_ZYOUGEN_ERR_MSG = (
+    <p style={{ color: "red" }}>
+      入力文字数上限を超えました。再入力してください。
     </p>
   );
 
@@ -72,11 +80,13 @@ export const App = () => {
   return (
     <>
       {/* TODO入力 */}
+      {inputText.length >= INPUT_ZYOUGEN_COUNT && INPUT_ZYOUGEN_ERR_MSG}
       <InputTodo
         inputText={inputText}
         onChange={onChangeInpuText}
         onClick={onClickAdd}
         disabledFlag={incompleteTodos.length >= ZYOUGEN_COUNT}
+        inputDisabled={inputText.length >= INPUT_ZYOUGEN_COUNT}
       />
 
       {/* 未完了TODO一覧 */}
